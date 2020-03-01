@@ -1,18 +1,18 @@
 package io.liuwuji.jcartadministrationback.controller;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.liuwuji.jcartadministrationback.constant.ClientExceptionConstant;
 import io.liuwuji.jcartadministrationback.dto.in.*;
-import io.liuwuji.jcartadministrationback.dto.out.AdministratorGetProfileOutDTO;
-import io.liuwuji.jcartadministrationback.dto.out.AdministratorListOutDTO;
-import io.liuwuji.jcartadministrationback.dto.out.AdministratorShowOutDTO;
-import io.liuwuji.jcartadministrationback.dto.out.PageOutDTO;
+import io.liuwuji.jcartadministrationback.dto.out.*;
 import io.liuwuji.jcartadministrationback.exception.ClientException;
 import io.liuwuji.jcartadministrationback.po.Administrator;
+import io.liuwuji.jcartadministrationback.service.AdministratorService;
+import io.liuwuji.jcartadministrationback.util.JWTUtil;
+import io.liuwuji.jcartadministrationback.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/administrator")

@@ -1,5 +1,6 @@
 package io.liuwuji.jcartadministrationback.service;
 
+import com.github.pagehelper.Page;
 import io.liuwuji.jcartadministrationback.dto.in.ProductCreateInDTO;
 import io.liuwuji.jcartadministrationback.dto.in.ProductUpdateInDTO;
 import io.liuwuji.jcartadministrationback.dto.out.ProductListOutDTO;
