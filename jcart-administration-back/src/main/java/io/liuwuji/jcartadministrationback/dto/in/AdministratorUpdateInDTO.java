@@ -1,11 +1,11 @@
 package io.liuwuji.jcartadministrationback.dto.in;
 
-
 public class AdministratorUpdateInDTO {
     private Integer administratorId;
     private String realName;
     private String password;
     private String email;
+    private String avatarUrl;
     private Byte status;
 
     public Integer getAdministratorId() {
@@ -49,5 +49,10 @@ public class AdministratorUpdateInDTO {
     }
 
     public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

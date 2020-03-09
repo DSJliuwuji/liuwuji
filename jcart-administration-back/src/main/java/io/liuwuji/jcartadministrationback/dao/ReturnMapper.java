@@ -1,8 +1,13 @@
 package io.liuwuji.jcartadministrationback.dao;
 
-
+import com.github.pagehelper.Page;
 import io.liuwuji.jcartadministrationback.po.Return;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+
+@Repository
 public interface ReturnMapper {
     int deleteByPrimaryKey(Integer returnId);
 
@@ -15,4 +20,14 @@ public interface ReturnMapper {
     int updateByPrimaryKeySelective(Return record);
 
     int updateByPrimaryKey(Return record);
+
+    Page<Return> search(@Param("returnId") Integer returnId,
+                        @Param("orderId") Long orderId,
+                        @Param("startTime") Date startTime,
+                        @Param("endTime") Date endTime,
+                        @Param("status") Byte status,
+                        @Param("productCode") String productCode,
+                        @Param("customerName") String customerName,
+                        @Param("productName") String productName);
+
 }
