@@ -47,4 +47,7 @@ public class AdministratorUpdateInDTO {
     public void setStatus(Byte status) {
         this.status = status;
     }
+
+    public String getAvatarUrl() {
+    }
 }

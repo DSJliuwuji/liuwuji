@@ -1,6 +1,9 @@
 package io.liuwuji.jcartadministrationback.service;
 
+import com.github.pagehelper.Page;
 import io.liuwuji.jcartadministrationback.po.Administrator;
+
+import java.util.List;
 
 public interface  AdministratorService {
 
@@ -10,4 +13,11 @@ public interface  AdministratorService {
 
     void update(Administrator administrator);
 
+    Page<Administrator> getList(Integer pageNum);
+
+    Integer create(Administrator administrator);
+
+    void batchDelete(List<Integer> administratorIds);
+
+    void delete(Integer adminstratorId);
 }
