@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import io.liuwuji.jcartadministrationback.dao.OrderDetailMapper;
 import io.liuwuji.jcartadministrationback.dao.OrderMapper;
+import io.liuwuji.jcartadministrationback.dto.in.OrderSearchInDTO;
 import io.liuwuji.jcartadministrationback.dto.out.OrderListOutDTO;
 import io.liuwuji.jcartadministrationback.dto.out.OrderShowOutDTO;
 import io.liuwuji.jcartadministrationback.po.Customer;
@@ -16,6 +17,7 @@ import io.liuwuji.jcartadministrationback.vo.OrderProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,11 +33,26 @@ public class OrderServiceImpl implements OrderService {
     private CustomerService customerService;
 
     @Override
-    public Page<OrderListOutDTO> search(Integer pageNum) {
+    public void update(Order order) {
+        orderMapper.updateByPrimaryKeySelective(order);
+    }
+
+
+
+    @Override
+    public Page<OrderListOutDTO> search(OrderSearchInDTO orderSearchInDTO, Integer pageNum) {
         PageHelper.startPage(pageNum, 10);
-        Page<OrderListOutDTO> page = orderMapper.search();
+        Page<OrderListOutDTO> page = orderMapper
+                .search(orderSearchInDTO.getOrderId(),
+                        orderSearchInDTO.getStatus(),
+                        orderSearchInDTO.getTotalPrice(),
+                        orderSearchInDTO.getCustomerName(),
+                        orderSearchInDTO.getStartTimestamp() == null ? null : new Date(orderSearchInDTO.getStartTimestamp()),
+                        orderSearchInDTO.getEndTimestamp() == null ? null : new Date(orderSearchInDTO.getEndTimestamp()));
         return page;
     }
+
+
 
     @Override
     public OrderShowOutDTO getById(Long orderId) {
@@ -67,8 +84,5 @@ public class OrderServiceImpl implements OrderService {
         return orderShowOutDTO;
     }
 
-    @Override
-    public void update(Order order) {
-        orderMapper.updateByPrimaryKeySelective(order);
-    }
+
 }

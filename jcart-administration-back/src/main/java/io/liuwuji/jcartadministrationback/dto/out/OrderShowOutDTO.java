@@ -138,4 +138,7 @@ public class OrderShowOutDTO {
     public void setOrderProducts(List<OrderProductShowOutDTO> orderProducts) {
         this.orderProducts = orderProducts;
     }
+
+    public void setCustomerName(String realName) {
+    }
 }
