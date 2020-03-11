@@ -5,7 +5,6 @@ import com.github.pagehelper.Page;
 import io.liuwuji.jcartadministrationback.constant.ClientExceptionConstant;
 import io.liuwuji.jcartadministrationback.dto.in.*;
 import io.liuwuji.jcartadministrationback.dto.out.*;
-import io.liuwuji.jcartadministrationback.enumeration.AdministratorStatus;
 import io.liuwuji.jcartadministrationback.exception.ClientException;
 import io.liuwuji.jcartadministrationback.po.Administrator;
 import io.liuwuji.jcartadministrationback.service.AdministratorService;
@@ -190,7 +189,7 @@ public class AdministratorController {
         administrator.setRealName(administratorCreateInDTO.getRealName());
         administrator.setEmail(administratorCreateInDTO.getEmail());
         administrator.setAvatarUrl(administratorCreateInDTO.getAvatarUrl());
-        administrator.setStatus((byte) AdministratorStatus.Enable.ordinal());
+        administrator.setStatus(administratorCreateInDTO.getStatus());
         administrator.setCreateTime(new Date());
 
         String bcryptHashString = BCrypt.withDefaults().hashToString(12, administratorCreateInDTO.getPassword().toCharArray());
