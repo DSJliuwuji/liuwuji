@@ -9,6 +9,7 @@ import io.liuwuji.jcartadministrationback.dto.out.ProductListOutDTO;
 import io.liuwuji.jcartadministrationback.dto.out.ProductShowOutDTO;
 import io.liuwuji.jcartadministrationback.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,14 +18,20 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+
     @Autowired
     private ProductService productService;
+
+@Value("www.img.baseurl")
+    private  String imgeBaseurl;
 
     @GetMapping("/search")
     public PageOutDTO<ProductListOutDTO> search(ProductSearchInDTO productSearchInDTO,
                                                 @RequestParam(required = false, defaultValue = "1") Integer pageNum){
         Page<ProductListOutDTO> page = productService.search(pageNum);
-
+        for (ProductListOutDTO outDTO : page) {
+            outDTO.setMainPicUrl(imgeBaseurl+"/"+outDTO.getMainPicUrl());
+        }
         PageOutDTO<ProductListOutDTO> pageOutDTO = new PageOutDTO<>();
         pageOutDTO.setTotal(page.getTotal());
         pageOutDTO.setPageSize(page.getPageSize());
